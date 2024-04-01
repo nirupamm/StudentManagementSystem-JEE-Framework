@@ -39,6 +39,7 @@ public class StringUtils {
 	public static final String MESSAGE_ERROR_EMAIL = "Email is already registered.";
 	public static final String MESSAGE_ERROR_PHONE_NUMBER = "Phone number is already registered.";
 	public static final String MESSAGE_ERROR_PASSWORD_UNMATCHED = "Password is not matched.";
+	public static final String MESSAGE_ERROR_INCORRECT_DATA = "Please correct all the fields.";
 
 	// Login Page Messages
 	public static final String MESSAGE_SUCCESS_LOGIN = "Successfully LoggedIn!";
@@ -72,8 +73,11 @@ public class StringUtils {
 
 	// Start: Normal Text
 	public static final String USER = "user";
+	public static final String SUCCESS = "success";
+	public static final String TRUE = "true";
 	public static final String JSESSIONID = "JSESSIONID";
 	public static final String LOGIN = "Login";
 	public static final String LOGOUT = "Logout";
+	public static final String STUDENT_MODEL = "studentModel";
 	// End: Normal Text
 }

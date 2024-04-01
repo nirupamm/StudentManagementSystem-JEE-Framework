@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.database.DBController;
 import model.StudentModel;
 import utils.StringUtils;
+import utils.ValidationUtil;
 
 /**
  * This Servlet class handles student registration requests. It extracts student
@@ -57,19 +58,28 @@ public class RegisterStudentServlet extends HttpServlet {
 		String username = request.getParameter(StringUtils.USERNAME);
 		String password = request.getParameter(StringUtils.PASSWORD);
 
-		// Implement data validation here (e.g., check for empty fields, email format,
-		// etc.)
-
 		// Create a StudentModel object to hold student information
 		StudentModel student = new StudentModel(firstName, lastName, dob, gender, email, phoneNumber, subject, username,
 				password);
+		
+		// Implement data validation here (e.g., check for empty fields, email format,
+		// etc.)
+		if(!ValidationUtil.isTextOnly(firstName) ||
+				!ValidationUtil.isTextOnly(lastName) ||
+				!ValidationUtil.isAlphanumeric(username) ||
+				!ValidationUtil.isEmail(email) ||
+				!ValidationUtil.isNumbersOnly(phoneNumber) ||
+				!ValidationUtil.isGenderMatches(gender)) {
+			request.setAttribute(StringUtils.MESSAGE_ERROR, StringUtils.MESSAGE_ERROR_INCORRECT_DATA);
+			request.getRequestDispatcher(StringUtils.PAGE_URL_REGISTER).forward(request, response);
+		}
 
 		// Call DBController to register the student
 		int result = dbController.registerStudent(student);
 
 		if (result == 1) {
 			request.setAttribute(StringUtils.MESSAGE_SUCCESS, StringUtils.MESSAGE_SUCCESS_REGISTER);
-			response.sendRedirect(request.getContextPath() + StringUtils.PAGE_URL_LOGIN);
+			response.sendRedirect(request.getContextPath() + StringUtils.PAGE_URL_LOGIN+ "?success=true");
 		} else if (result == 0) {
 			request.setAttribute(StringUtils.MESSAGE_ERROR, StringUtils.MESSAGE_ERROR_REGISTER);
 			request.getRequestDispatcher(StringUtils.PAGE_URL_REGISTER).forward(request, response);

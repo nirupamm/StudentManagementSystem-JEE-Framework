@@ -64,18 +64,21 @@ public class LoginServlet extends HttpServlet {
 			response.addCookie(userCookie);
 			
             request.setAttribute(StringUtils.MESSAGE_SUCCESS, StringUtils.MESSAGE_SUCCESS_LOGIN);
-            response.sendRedirect(request.getContextPath() + StringUtils.PAGE_URL_WELCOME);
+			response.sendRedirect(request.getContextPath() + StringUtils.PAGE_URL_WELCOME);
         } else if (loginResult == 0) {
             // Username or password mismatch
             request.setAttribute(StringUtils.MESSAGE_ERROR, StringUtils.MESSAGE_ERROR_LOGIN);
+			request.setAttribute(StringUtils.USERNAME, userName);
             request.getRequestDispatcher(StringUtils.PAGE_URL_LOGIN).forward(request, response);
         } else if (loginResult == -1) {
             // Username not found
             request.setAttribute(StringUtils.MESSAGE_ERROR, StringUtils.MESSAGE_ERROR_CREATE_ACCOUNT);
+			request.setAttribute(StringUtils.USERNAME, userName);
             request.getRequestDispatcher(StringUtils.PAGE_URL_LOGIN).forward(request, response);
         } else {
             // Internal server error
             request.setAttribute(StringUtils.MESSAGE_ERROR, StringUtils.MESSAGE_ERROR_SERVER);
+			request.setAttribute(StringUtils.USERNAME, userName);
             request.getRequestDispatcher(StringUtils.PAGE_URL_LOGIN).forward(request, response);
         }
     }

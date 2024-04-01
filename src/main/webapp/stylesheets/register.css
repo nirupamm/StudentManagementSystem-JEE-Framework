@@ -68,3 +68,11 @@ button {
 button:hover {
     background-color: #449A44;
 }
+
+.error-msg{
+	color: red;
+}
+
+.success-msg{
+	color: #449A44;
+}

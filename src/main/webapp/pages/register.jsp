@@ -1,17 +1,23 @@
+<%@page import="utils.StringUtils"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+
+<%
+String contextPath = request.getContextPath();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="../stylesheets/register.css" />
+	href="<%=contextPath%>/stylesheets/register.css" />
 </head>
 <body>
 	<div class="container">
 		<h1>Registration Form</h1>
-		<form action="../registerstudent" method="post">
+		<form action="<%=contextPath%>/registerstudent" method="post">
 			<div class="row">
 				<div class="col">
 					<label for="firstName">First Name:</label> <input type="text"
@@ -72,7 +78,32 @@
 			</div>
 			<button type="submit">Submit</button>
 		</form>
+		<%
+		String errMsg = (String) request.getAttribute(StringUtils.MESSAGE_ERROR);
+		String successMsg = (String) request.getAttribute(StringUtils.MESSAGE_SUCCESS);
+
+		if (errMsg != null) {
+			// print
+		%>
+		<h4 class="error-msg">
+			<%
+			out.println(errMsg);
+			%>
+		</h4>
+		<%
+		}
+
+		if (successMsg != null) {
+		// print
+		%>
+		<h4 class="success-msg">
+			<%
+			out.println(successMsg);
+			%>
+		</h4>
+		<%
+		}
+		%>
 	</div>
 </body>
 </html>
-    

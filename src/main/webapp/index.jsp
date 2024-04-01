@@ -10,7 +10,7 @@ String contextPath = request.getContextPath();
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="<%=contextPath%>/stylesheets/header.css" />
+	href="<%=contextPath %>/stylesheets/header.css" />
 <link rel="stylesheet" type="text/css"
 	href="<%=contextPath%>/stylesheets/footer.css" />
 </head>
