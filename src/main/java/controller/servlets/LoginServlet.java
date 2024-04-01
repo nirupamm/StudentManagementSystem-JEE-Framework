@@ -56,10 +56,10 @@ public class LoginServlet extends HttpServlet {
         if (loginResult == 1) {
             // Login successful
         	HttpSession userSession = request.getSession();
-			userSession.setAttribute("username", userName);
-			userSession.setMaxInactiveInterval(30*30);
+			userSession.setAttribute(StringUtils.USERNAME, userName);
+			userSession.setMaxInactiveInterval(30*60);
 			
-			Cookie userCookie= new Cookie("user", userName);
+			Cookie userCookie= new Cookie(StringUtils.USER, userName);
 			userCookie.setMaxAge(30*60);
 			response.addCookie(userCookie);
 			

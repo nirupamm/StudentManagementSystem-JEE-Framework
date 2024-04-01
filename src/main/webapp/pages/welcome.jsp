@@ -12,6 +12,7 @@
 <body>
 	<%
 		String userSession = (String) session.getAttribute(StringUtils.USERNAME);
+		
 		String cookieUsername  = null;
 		String cookieSessionID = null;
 		Cookie[] cookies = request.getCookies();
